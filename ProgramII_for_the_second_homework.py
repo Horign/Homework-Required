@@ -1,0 +1,18 @@
+import numpy as np
+np.random.seed(42)
+prices=np.array([100,102,105,103,107])
+log=np.log(prices[1:]/prices[:-1])
+print("Daily income in log:")
+print(log)
+price100=np.random.normal(loc=100,scale=3,size=100)
+window5,window20=5,20
+ma5=np.convolve(price100,np.ones(window5)/window5,mode="valid")
+ma20=np.convolve(price100,np.ones(window20)/window20,mode="valid")
+print("length of moving average line in result:")
+print(f"MA5 vaild data length:{len(ma5)},MA20 valid data length:{len(ma20)}")
+stock=np.random.normal(loc=0.0004,scale=0.018,size=(1000,252))
+daily=np.std(stock,axis=1)
+annual=daily*np.sqrt(252)
+correspondm=np.corrcoef(stock)
+print("annual change rate of begin 5 notes:",np.round(annual[:5],4))
+print("corresponding number of matrix shape:",correspondm.shape)
